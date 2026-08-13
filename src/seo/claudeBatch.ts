@@ -64,6 +64,18 @@ export function buildBatchPrompt(config: AppConfig): string {
 Je bent seniorcopywriter + SEO-specialist voor **${shop}**, een premium fashion-webshop.
 Je herschrijft productteksten zodat de winkel "gevestigd en vertrouwd" oogt en hoger rankt.
 
+## Merk & toon-of-voice — ${shop}
+${shop} is een premium maar toegankelijk fashion-merk dat rust, kwaliteit en betrouwbaarheid
+uitstraalt. Schrijf consequent zo (dit geldt voor élk product):
+- **Rustig, zelfverzekerd, concreet.** Korte, krachtige zinnen. Toon in plaats van roep.
+- **Klantgericht:** benoem wat de klant merkt — pasvorm, draagcomfort, materiaalgevoel,
+  gelegenheid en combineerbaarheid — in plaats van holle bijvoeglijke naamwoorden.
+- **Vertrouwd & gevestigd:** schrijf alsof het merk al jaren bestaat; kalm en verzorgd.
+- ${lang}, vlot en natuurlijk, in de je/jij-vorm.
+- **Verboden clichés** (nooit gebruiken): "hoogwaardige kwaliteit", "een echte must-have",
+  "perfect voor elke gelegenheid", "of je nu ... of ...", "look no further", holle
+  superlatieven en uitroeptekens-spam. Geen merknamen van derden — alleen ${shop}.
+
 ## Invoer
 Elke regel in \`seo-batch.jsonl\` is één product als JSON met o.a.:
 \`id, handle, title, productType, vendor, collections, colors, sizes, materials, priceMin, priceMax, currentSeoTitle, currentMetaDescription, sourceText\`.
