@@ -1,5 +1,21 @@
-import { dedupeCI } from "../util/text.js";
+import { dedupeCI, stripTrademarkSymbols } from "../util/text.js";
 import type { AppConfig, Catalog } from "../types.js";
+
+/* Dropship-junk the source stores tend to bake into descriptions. These cheapen
+ * a premium, "established & trusted" brand, so we strip whole blocks that match. */
+const JUNK = /(uitverkoop\s+eindigt|wees er snel bij|op\s*=\s*op|laatste kans|tevredenheidsgarantie|geld\s*terug|eindigt\s+(vanavond|om\s*\d{1,2}:\d{2})|\bnog\s+snel\b|beperkte voorraad|bestel\s+nu\s+voordat|sale\s+eindigt|niet goed,?\s*geld terug)/i;
+
+/** Remove block elements whose visible text is fake-urgency / guarantee spam. */
+function declutterHtml(html: string): string {
+  if (!html) return html;
+  return html.replace(
+    /<(p|li|div|span|h[1-6])\b[^>]*>([\s\S]*?)<\/\1>/gi,
+    (match, _tag, inner: string) => {
+      const text = inner.replace(/<[^>]+>/g, " ");
+      return JUNK.test(text) ? "" : match;
+    },
+  );
+}
 
 /* Rebranding pass — turn a scraped catalogue into YOUR store.
  *
@@ -88,6 +104,14 @@ export function rebrandCatalog(catalog: Catalog, config: AppConfig): RebrandResu
       p.vendor = config.vendorName;
       touched = true;
     }
+
+    // Strip ™/®/© from the visible title (unconditional — also fixes slugs).
+    const noMark = stripTrademarkSymbols(p.title);
+    if (noMark !== p.title) { p.title = noMark; touched = true; }
+
+    // Remove dropship urgency/guarantee spam from the body (unconditional).
+    const decluttered = declutterHtml(p.originalBodyHtml);
+    if (decluttered !== p.originalBodyHtml) { p.originalBodyHtml = decluttered; touched = true; }
 
     if (regexes.length) {
       const newTitle = scrubTitle(p.title, regexes);

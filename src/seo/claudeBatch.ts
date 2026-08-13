@@ -103,6 +103,11 @@ Schrijf per product **nieuwe** velden in ${lang}. Schrijf naar \`seo-batch.out.j
    - Schrijf verkopend maar eerlijk; premium, rustig, zelfverzekerd.
 5. **Toon**: geen AI-clichés, geen overdrijving, geen uitroeptekens-spam. Denk aan een
    gevestigd merk dat rustig zijn kwaliteit laat zien.
+6. **Strip bronruis & corrigeer fouten.** Neem NOOIT nep-urgentie of garantie-spam over
+   ("uitverkoop eindigt vanavond", "wees er snel bij", "op=op", aftelklokken, "geld terug",
+   "100% garantie"). Gebruik altijd de échte productnaam uit \`title\` — niet een naam die
+   per ongeluk in \`sourceText\` staat (bronwinkels maken copy-paste-fouten). Leid materiaal
+   alleen af als het écht het materiaal is, niet uit styling-tips ("combineer met jeans").
 
 ## Werkwijze — ALLE producten, hervatbaar
 Het doel is om **elk** product in \`seo-batch.jsonl\` te verwerken, niet een selectie.

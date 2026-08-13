@@ -16,8 +16,17 @@ const SPECIAL: Record<string, string> = {
   Ł: "l",
   ð: "d",
   þ: "th",
+  "™": "", // trademark/registered marks: drop so slugs don't become "...tm"
+  "®": "",
+  "©": "",
+  "℠": "",
   "&": " en ", // Dutch store default; harmless in English too
 };
+
+/** Remove trademark/registered symbols from visible text (titles, etc.). */
+export function stripTrademarkSymbols(input: string): string {
+  return input.replace(/[™®©℠]/g, "").replace(/\s{2,}/g, " ").trim();
+}
 
 /** Remove diacritics and map special glyphs to ASCII. */
 export function transliterate(input: string): string {

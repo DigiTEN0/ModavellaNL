@@ -105,6 +105,35 @@ test("rebrand: vendor overridden to shop, source brand scrubbed from copy", () =
   for (const p of cat.products) assert.ok(!/Nora/i.test(p.seo!.bodyHtml), "no brand leak in features");
 });
 
+test("trademark symbols stripped from slug/title; urgency spam removed", () => {
+  const raw: RawShopifyProduct = {
+    id: 999,
+    title: "Noor™ | Buikcamouflerende Midi Jurk",
+    handle: "noortm-buikcamouflerende-midi-jurk",
+    body_html:
+      "<p>Soepel vallende midi jurk met abstracte print.</p>" +
+      "<p>Let op: De uitverkoop eindigt vanavond om 23:59, wees er snel bij!</p>" +
+      "<p>100% Tevredenheidsgarantie – Geld Terug!</p>",
+    vendor: "Nora-Mae",
+    product_type: "Jurken",
+    tags: [],
+    options: [{ name: "Maat", position: 1, values: ["S", "M", "L"] }],
+    variants: [
+      { id: 9991, product_id: 999, title: "S", option1: "S", price: "39.95", available: true },
+    ],
+    images: [],
+  };
+  const cat = normalizeCatalog("https://bron.example.com", [raw], [], new Map(), new Map());
+  runSeoEngine(cat, config);
+  const p = cat.products[0]!;
+  assert.ok(!/tm/i.test(p.seo!.handle.split("-")[0]!), `slug not "noortm": ${p.seo!.handle}`);
+  assert.ok(p.seo!.handle.startsWith("noor-"), `clean slug: ${p.seo!.handle}`);
+  assert.ok(!/™/.test(p.title), "™ stripped from title");
+  assert.ok(!/uitverkoop eindigt|wees er snel bij/i.test(p.seo!.bodyHtml), "urgency spam removed");
+  assert.ok(!/geld terug/i.test(p.seo!.bodyHtml), "guarantee spam removed");
+  assert.ok(/midi jurk/i.test(p.seo!.bodyHtml), "real content kept");
+});
+
 test("collection membership becomes tags (category preserved)", () => {
   const cat = buildCatalog();
   const p1 = cat.products.find((p) => p.sourceId === 1001)!;
