@@ -11,7 +11,7 @@ import { buildShopifyCsv } from "./export/shopifyCsv.js";
 import { buildCollectionsCsv } from "./export/collectionsCsv.js";
 import { downloadImages } from "./export/images.js";
 import { buildProductJsonLd } from "./seo/jsonld.js";
-import { buildBatchJsonl, buildBatchPrompt, applyBatchOutput } from "./seo/claudeBatch.js";
+import { buildBatchJsonl, buildBatchPrompt, applyBatchOutput, batchStatus } from "./seo/claudeBatch.js";
 import { buildReport, reportToMarkdown } from "./report.js";
 import type { AppConfig, Catalog } from "./types.js";
 
@@ -33,6 +33,9 @@ Commands:
 
   seo:batch  [--in ./output] [--out ./output]
              Exporteer seo-batch.jsonl + PROMPT.md voor premium copy via Claude Code.
+
+  seo:status [--in ./output]
+             Toon voortgang van de Claude-batch (klaar / resterend).
 
   seo:apply  [--in ./output] --batch <seo-batch.out.jsonl>
              Voeg door Claude geschreven copy terug in en her-exporteer.
@@ -200,6 +203,21 @@ async function main(): Promise<void> {
     }
     case "seo:batch": {
       await cmdSeoBatch(config, inDir, outDir);
+      break;
+    }
+    case "seo:status": {
+      const batchPath = join(inDir, "seo-batch.jsonl");
+      const outPath = join(inDir, "seo-batch.out.jsonl");
+      if (!existsSync(batchPath)) throw new Error(`seo-batch.jsonl niet gevonden in ${inDir}. Draai eerst "seo:batch".`);
+      const st = batchStatus(batchPath, outPath);
+      const pct = st.total ? Math.round((st.done / st.total) * 100) : 0;
+      process.stdout.write(`Voortgang: ${st.done} / ${st.total} klaar (${pct}%) — ${st.remaining} resterend\n`);
+      if (st.remaining > 0) {
+        const preview = st.remainingIds.slice(0, 10).join(", ");
+        process.stdout.write(`Eerste resterende id's: ${preview}${st.remaining > 10 ? " …" : ""}\n`);
+      } else {
+        process.stdout.write(`Alles klaar! Draai nu: npm run cli -- seo:apply --in ${inDir} --batch ${outPath}\n`);
+      }
       break;
     }
     case "seo:apply": {

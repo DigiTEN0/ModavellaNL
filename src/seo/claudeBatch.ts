@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { htmlToText, sanitizeHtml } from "../util/html.js";
 import { log } from "../util/log.js";
 import type { AppConfig, Catalog } from "../types.js";
@@ -92,14 +92,61 @@ Schrijf per product **nieuwe** velden in ${lang}. Schrijf naar \`seo-batch.out.j
 5. **Toon**: geen AI-clichés, geen overdrijving, geen uitroeptekens-spam. Denk aan een
    gevestigd merk dat rustig zijn kwaliteit laat zien.
 
-## Werkwijze
-- Verwerk in batches (bijv. 25–50 regels tegelijk) zodat het beheersbaar blijft.
-- Begin met de belangrijkste producten (bestsellers/hero's), de rest kan later.
-- Producten die je niet herschrijft, houden automatisch de sterke deterministische
-  SEO uit de engine — je hoeft dus niet alles te doen.
+## Werkwijze — ALLE producten, hervatbaar
+Het doel is om **elk** product in \`seo-batch.jsonl\` te verwerken, niet een selectie.
 
-Klaar? Draai daarna: \`npm run cli -- seo:apply --in ./output --batch ./output/seo-batch.out.jsonl\`
+1. Lees zo nodig eerst \`seo-batch.out.jsonl\` (als die bestaat) en verzamel de \`id\`'s die
+   al gedaan zijn. **Sla die over** — zo is het proces hervatbaar en dubbel-veilig.
+2. Verwerk de resterende regels in blokken van ~40 tegelijk.
+3. **Append** je resultaten regel-voor-regel aan \`seo-batch.out.jsonl\` (niet overschrijven).
+4. Ga door met het volgende blok tot er niets meer resteert.
+5. Controleer voortgang met: \`npm run cli -- seo:status --in ./output\`
+
+Als de sessie tussentijds stopt: start deze opdracht simpelweg opnieuw. Dankzij stap 1
+pakt hij automatisch verder waar hij gebleven was.
+
+Klaar (0 resterend)? Draai dan:
+\`npm run cli -- seo:apply --in ./output --batch ./output/seo-batch.out.jsonl\`
 `;
+}
+
+/** Collect the set of product ids present in a JSONL file (one object/line). */
+function idsInJsonl(path: string): Set<number> {
+  const ids = new Set<number>();
+  if (!existsSync(path)) return ids;
+  const raw = readFileSync(path, "utf8");
+  for (const line of raw.split(/\r?\n/)) {
+    const t = line.trim();
+    if (!t) continue;
+    try {
+      const obj = JSON.parse(t) as { id?: number };
+      if (typeof obj.id === "number") ids.add(obj.id);
+    } catch {
+      /* skip malformed line */
+    }
+  }
+  return ids;
+}
+
+export interface BatchStatus {
+  total: number;
+  done: number;
+  remaining: number;
+  remainingIds: number[];
+}
+
+/** Compare the input batch against the output file to report progress. */
+export function batchStatus(batchPath: string, outPath: string): BatchStatus {
+  const total = idsInJsonl(batchPath);
+  const done = idsInJsonl(outPath);
+  const remainingIds: number[] = [];
+  for (const id of total) if (!done.has(id)) remainingIds.push(id);
+  return {
+    total: total.size,
+    done: [...done].filter((id) => total.has(id)).length,
+    remaining: remainingIds.length,
+    remainingIds,
+  };
 }
 
 /** Merge Claude's output back onto the catalogue. Returns count applied. */
