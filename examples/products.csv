@@ -1,0 +1,59 @@
+﻿Handle,Title,Body (HTML),Vendor,Product Category,Type,Tags,Published,Option1 Name,Option1 Value,Option2 Name,Option2 Value,Option3 Name,Option3 Value,Variant SKU,Variant Grams,Variant Inventory Tracker,Variant Inventory Qty,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Compare At Price,Variant Requires Shipping,Variant Taxable,Variant Barcode,Image Src,Image Position,Image Alt Text,Gift Card,SEO Title,SEO Description,Variant Image,Variant Weight Unit,Status
+dames-sneaker-bloom-white,Dames Sneaker Bloom White,"<div class=""mv-product-description"">
+<p>De <strong>Dames Sneaker Bloom White</strong> is een tijdloze aanvulling op je garderobe. Uitgevoerd in leer voor een prettige pasvorm.</p>
+<p>Comfortabele dames sneaker van premium leer met een zachte binnenzool.</p><h4>Maattabel</h4><table><tr><th>Maat</th><th>Lengte (cm)</th></tr><tr><td>38</td><td>24.0</td></tr><tr><td>39</td><td>24.7</td></tr><tr><td>40</td><td>25.3</td></tr></table><p>Machine wasbaar op 30°.</p>
+<h3>Kenmerken</h3>
+<ul>
+<li><strong>Categorie:</strong> Sneakers</li>
+<li><strong>Merk:</strong> Modavella Studio</li>
+<li><strong>Materiaal:</strong> Leer</li>
+<li><strong>Kleuren:</strong> Wit en Zwart</li>
+<li><strong>Maten:</strong> 38 t/m 40</li>
+<li><strong>Verzorging:</strong> zie verzorgingsinstructies</li>
+</ul>
+<h3>Waarom bij ons bestellen</h3>
+<ul>
+<li>Gratis verzending vanaf €50</li>
+<li>30 dagen gratis retour</li>
+<li>Klantenservice binnen 24u</li>
+</ul>
+</div>",Modavella Studio,,Sneakers,"nieuw, lente, leer, collectie:dames-schoenen, Dames Schoenen, collectie:sale, Sale, Sneakers, Wit, Zwart",TRUE,Kleur,Wit,Maat,38,,,SNK-BLOOM-WIT-38,700,,,deny,manual,89.95,109.95,TRUE,TRUE,,https://cdn.example.com/bloom-wit-1.jpg,1,Bloom sneaker wit,FALSE,Dames Sneaker Bloom White – Leer | Modavella,"Dames Sneaker Bloom White — nu online bij Modavella. Gemaakt van leer, verkrijgbaar in 2 kleuren, maat 38 t/m 40. Gratis verzending vanaf €50.",https://cdn.example.com/bloom-wit-1.jpg,g,active
+dames-sneaker-bloom-white,,,,,,,,,Wit,,39,,,SNK-BLOOM-WIT-39,700,,,deny,manual,89.95,109.95,TRUE,TRUE,,https://cdn.example.com/bloom-zwart-1.jpg,2,Bloom sneaker zwart,,,,https://cdn.example.com/bloom-wit-1.jpg,g,
+dames-sneaker-bloom-white,,,,,,,,,Zwart,,40,,,SNK-BLOOM-ZWA-40,700,,,deny,manual,89.95,,TRUE,TRUE,,,,,,,,https://cdn.example.com/bloom-zwart-1.jpg,g,
+dames-chelsea-boots-noir,Dames Chelsea Boots Noir,"<div class=""mv-product-description"">
+<p>De <strong>Dames Chelsea Boots Noir</strong> is een tijdloze aanvulling op je garderobe.</p>
+<p>Tijdloze chelsea boots.</p>
+<h3>Kenmerken</h3>
+<ul>
+<li><strong>Categorie:</strong> Laarzen</li>
+<li><strong>Merk:</strong> Modavella Studio</li>
+<li><strong>Maten:</strong> 37 t/m 41</li>
+</ul>
+<h3>Waarom bij ons bestellen</h3>
+<ul>
+<li>Gratis verzending vanaf €50</li>
+<li>30 dagen gratis retour</li>
+<li>Klantenservice binnen 24u</li>
+</ul>
+</div>",Modavella Studio,,Laarzen,"winter, collectie:dames-schoenen, Dames Schoenen, Laarzen",TRUE,Maat,37,,,,,BOOT-NOIR-37,900,,,deny,manual,129.00,,TRUE,TRUE,,https://cdn.example.com/chelsea-noir-1.jpg,1,Chelsea boots noir,FALSE,Dames Chelsea Boots Noir – Laarzen | Modavella,Dames Chelsea Boots Noir — nu online bij Modavella. Maat 37 t/m 41. Gratis verzending vanaf €50. 30 dagen gratis retour. Klantenservice binnen 24u.,,g,active
+dames-chelsea-boots-noir,,,,,,,,,38,,,,,BOOT-NOIR-38,900,,,deny,manual,129.00,,TRUE,TRUE,,,,,,,,,g,
+dames-chelsea-boots-noir,,,,,,,,,39,,,,,BOOT-NOIR-39,900,,,deny,manual,129.00,,TRUE,TRUE,,,,,,,,,g,
+dames-wollen-winterjas-camel,Dames Wollen Winterjas Camel,"<div class=""mv-product-description"">
+<p>Deze warme winterjas is gemaakt van 60% wol en 40% polyester en houdt je moeiteloos warm tijdens koude dagen. De tijdloze camel-kleur past bij vrijwel elke outfit en de rechte pasvorm zorgt voor een verzorgde uitstraling. Met twee ruime steekzakken en een verborgen knoopsluiting is dit een echte garderobe-klassieker die je jaren meegaat.</p>
+<h3>Kenmerken</h3>
+<ul>
+<li><strong>Categorie:</strong> Jassen</li>
+<li><strong>Merk:</strong> Atelier Nord</li>
+<li><strong>Materiaal:</strong> Polyester en Wol</li>
+<li><strong>Maten:</strong> S t/m XL</li>
+</ul>
+<h3>Waarom bij ons bestellen</h3>
+<ul>
+<li>Gratis verzending vanaf €50</li>
+<li>30 dagen gratis retour</li>
+<li>Klantenservice binnen 24u</li>
+</ul>
+</div>",Atelier Nord,,Jassen,"winter, wol, collectie:dames-jassen, Dames Jassen, Jassen, polyester",TRUE,Maat,S,,,,,JAS-CAMEL-S,1400,,,deny,manual,199.95,249.95,TRUE,TRUE,,https://cdn.example.com/winterjas-camel-1.jpg,1,Wollen winterjas camel voorkant,FALSE,Dames Wollen Winterjas Camel – Jassen | Modavella,"Ontdek de Dames Wollen Winterjas Camel bij Modavella. Gemaakt van polyester en wol, maat S t/m XL. Gratis verzending vanaf €50. 30 dagen gratis retour.",,g,active
+dames-wollen-winterjas-camel,,,,,,,,,M,,,,,JAS-CAMEL-M,1400,,,deny,manual,199.95,249.95,TRUE,TRUE,,https://cdn.example.com/winterjas-camel-2.jpg,2,Wollen winterjas camel achterkant,,,,,g,
+dames-wollen-winterjas-camel,,,,,,,,,L,,,,,JAS-CAMEL-L,1400,,,deny,manual,199.95,249.95,TRUE,TRUE,,,,,,,,,g,
+dames-wollen-winterjas-camel,,,,,,,,,XL,,,,,JAS-CAMEL-XL,1400,,,deny,manual,199.95,249.95,TRUE,TRUE,,,,,,,,,g,

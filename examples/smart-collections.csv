@@ -1,0 +1,4 @@
+﻿Handle,Command,Title,Body HTML,Collection Type,Published,Sort Order,SEO Title,SEO Description,Image Src,Must Match,Rule: Product Column,Rule: Relation,Rule: Condition
+dames-schoenen,MERGE,Dames Schoenen,Alle schoenen voor dames.,Smart,TRUE,best-selling,Dames Schoenen | Modavella,Shop de complete dames schoenen-collectie bij Modavella. Gratis verzending vanaf €50 · 30 dagen gratis retour.,,all conditions,Tag,Equals,collectie:dames-schoenen
+dames-jassen,MERGE,Dames Jassen,Warme en stijlvolle jassen.,Smart,TRUE,best-selling,Dames Jassen | Modavella,Shop de complete dames jassen-collectie bij Modavella. Gratis verzending vanaf €50 · 30 dagen gratis retour.,,all conditions,Tag,Equals,collectie:dames-jassen
+sale,MERGE,Sale,Tijdelijk afgeprijsd.,Smart,TRUE,best-selling,Sale | Modavella,Shop de complete sale-collectie bij Modavella. Gratis verzending vanaf €50 · 30 dagen gratis retour.,,all conditions,Tag,Equals,collectie:sale

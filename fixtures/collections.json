@@ -1,0 +1,6 @@
+[
+  { "id": 5001, "title": "Dames Schoenen", "handle": "dames-schoenen", "description": "Alle schoenen voor dames.", "products_count": 2 },
+  { "id": 5002, "title": "Dames Jassen", "handle": "dames-jassen", "description": "Warme en stijlvolle jassen.", "products_count": 1 },
+  { "id": 5003, "title": "Sale", "handle": "sale", "description": "Tijdelijk afgeprijsd.", "products_count": 1 },
+  { "id": 5004, "title": "Lege Collectie", "handle": "lege-collectie", "description": "Geen producten hier.", "products_count": 0 }
+]

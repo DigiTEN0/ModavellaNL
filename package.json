@@ -1,0 +1,33 @@
+{
+  "name": "modavella-catalog-importer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Modavella catalog importer + SEO booster. Scrape a Shopify source store (products, variants, images, size charts, categories) and export a native Shopify import CSV with automatic collection preservation and top-notch SEO.",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "bin": {
+    "modavella": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "cli": "node dist/index.js",
+    "selftest": "node --test dist/tests/pipeline.test.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "shopify",
+    "scraper",
+    "catalog",
+    "migration",
+    "seo",
+    "modavella"
+  ],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "typescript": "^5.6.3"
+  }
+}
