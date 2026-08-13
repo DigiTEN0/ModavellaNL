@@ -1,7 +1,7 @@
 # Modavella import — rapport
 
 **Bron:** https://bron.example.com
-**Gescrapet op:** 2026-08-13T02:18:01.419Z
+**Gescrapet op:** 2026-08-13T02:41:48.142Z
 
 ## Catalogus
 | Metric | Waarde |

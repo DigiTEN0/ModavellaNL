@@ -21,6 +21,10 @@ const config: AppConfig = {
   shopName: "Modavella",
   locale: "nl",
   currency: "EUR",
+  vendorName: "Modavella",
+  keepSourceVendor: false,
+  brandScrub: true,
+  sourceBrands: ["Nora Mae"],
   scrapeDelayMs: 0,
   scrapeConcurrency: 3,
   scrapeMaxRetries: 2,
@@ -86,6 +90,19 @@ test("facets extract colours, sizes and materials from real data", () => {
   assert.ok(p3.facets.materials.includes("wol"));
   assert.ok(p3.facets.materials.includes("polyester"));
   assert.equal(p3.facets.priceMin, "199.95");
+});
+
+test("rebrand: vendor overridden to shop, source brand scrubbed from copy", () => {
+  const cat = buildCatalog();
+  // Vendor override on every product (source was "Nora-Mae").
+  for (const p of cat.products) assert.equal(p.vendor, "Modavella");
+  // Brand mention removed/replaced in the description, image URLs untouched.
+  const p3 = cat.products.find((p) => p.sourceId === 1003)!;
+  assert.ok(!/Nora[\s-]?Mae/i.test(p3.seo!.bodyHtml), "brand scrubbed from body");
+  assert.ok(/Ontworpen door Modavella/i.test(p3.seo!.bodyHtml), "brand replaced with shop name");
+  assert.ok(p3.images.every((i) => i.src.startsWith("https://cdn.example.com/")), "image URLs intact");
+  // No "Merk: Nora-Mae" leaking into any enhanced description.
+  for (const p of cat.products) assert.ok(!/Nora/i.test(p.seo!.bodyHtml), "no brand leak in features");
 });
 
 test("collection membership becomes tags (category preserved)", () => {

@@ -138,6 +138,28 @@ juiste categorie — vandaag én voor alles wat je later toevoegt. Nul handwerk.
 
 ---
 
+## Rebranding: van bronwinkel naar jóuw merk
+
+Je neemt een catalogus over, maar de winkel moet **Modavella** uitstralen — niet de bron.
+De tool doet daarom bij elke `build` automatisch een rebrand-pass:
+
+- **Vendor override:** elk product krijgt jouw vendor (standaard = `SHOP_NAME`), zodat de
+  bronmerknaam nooit in Shopify's Vendor-kolom of in de "Merk"-regel belandt.
+- **Merknaam-schrobben:** vermeldingen van het bronmerk in titels, beschrijvingen,
+  alt-teksten en tags worden verwijderd (titels/tags) of vervangen door jouw naam
+  (lopende tekst). **Afbeeldings-URL's worden nooit aangeraakt** — er breekt niets.
+
+De bron-vendornamen worden automatisch gedetecteerd en geschrobd. Staan er in de teksten
+ook spellingsvarianten (bv. een gestileerde naam of domein), voeg die dan toe in `.env`:
+
+```bash
+VENDOR_NAME=Modavella
+SOURCE_BRANDS=Nora Mae, Nora-Mae, NoraMae
+```
+
+Wil je juist de originele merken per product behouden (bv. multi-merk retailer)? Zet dan
+`KEEP_SOURCE_VENDOR=true` en/of `BRAND_SCRUB=false`.
+
 ## SEO: top-notch, zonder API-key
 
 Je krijgt **twee lagen**, die samenwerken:

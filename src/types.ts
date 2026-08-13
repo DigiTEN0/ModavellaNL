@@ -180,6 +180,14 @@ export interface AppConfig {
   shopName: string;
   locale: "nl" | "en";
   currency: string;
+  /** Vendor assigned to every product on export (default = shopName). */
+  vendorName: string;
+  /** If true, keep the source store's original vendor instead of overriding. */
+  keepSourceVendor: boolean;
+  /** If true, scrub source brand-name mentions from titles/descriptions/alt/tags. */
+  brandScrub: boolean;
+  /** Extra brand aliases to scrub, on top of the auto-detected source vendors. */
+  sourceBrands: string[];
   scrapeDelayMs: number;
   scrapeConcurrency: number;
   scrapeMaxRetries: number;

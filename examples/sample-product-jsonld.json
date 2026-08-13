@@ -2,7 +2,7 @@
   "@context": "https://schema.org/",
   "@type": "Product",
   "name": "Dames Sneaker Bloom White – Leer",
-  "description": "De Dames Sneaker Bloom White is een tijdloze aanvulling op je garderobe. Uitgevoerd in leer voor een prettige pasvorm.\n\nComfortabele dames sneaker van premium leer met een zachte binnenzool.\nMaattabel\nMaat Lengte (cm)\n38 24.0\n39 24.7\n40 25.3\n\nMachine wasbaar op 30°.\n\nKenmerken\n\nCategorie: Sneakers\n\nMerk: Modavella Studio\n\nMateriaal: Leer\n\nKleuren: Wit en Zwart\n\nMaten: 38 t/m 40\n\nVerzorging: zie ve",
+  "description": "De Dames Sneaker Bloom White is een tijdloze aanvulling op je garderobe. Uitgevoerd in leer voor een prettige pasvorm.\n\nComfortabele dames sneaker van premium leer met een zachte binnenzool.\nMaattabel\nMaat Lengte (cm)\n38 24.0\n39 24.7\n40 25.3\n\nMachine wasbaar op 30°.\n\nKenmerken\n\nCategorie: Sneakers\n\nMateriaal: Leer\n\nKleuren: Wit en Zwart\n\nMaten: 38 t/m 40\n\nVerzorging: zie verzorgingsinstructies\n\nWa",
   "image": [
     "https://cdn.example.com/bloom-wit-1.jpg",
     "https://cdn.example.com/bloom-zwart-1.jpg"
@@ -10,7 +10,7 @@
   "sku": "SNK-BLOOM-WIT-38",
   "brand": {
     "@type": "Brand",
-    "name": "Modavella Studio"
+    "name": "Modavella"
   },
   "url": "https://bron.example.com/products/dames-sneaker-bloom-white",
   "offers": {

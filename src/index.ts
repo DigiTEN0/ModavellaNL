@@ -112,6 +112,10 @@ async function cmdBuild(config: AppConfig, inDir: string, outDir: string, downlo
   const catalog = await loadCatalog(inDir);
   log.step("SEO-engine draaien");
   const stats = runSeoEngine(catalog, config);
+  if (!config.keepSourceVendor) {
+    log.ok(`Rebrand: Vendor → "${stats.vendorName}" op alle producten` +
+      (stats.brandAliasesScrubbed.length ? ` · merknamen geschrobd: ${stats.brandAliasesScrubbed.join(", ")}` : ""));
+  }
   log.ok(`SEO klaar: ${stats.products} producten, ${stats.uniqueHandles} unieke handles, ${stats.collectionsTagged} met collectie-tags`);
   await saveCatalog(catalog, outDir); // persist with seo fields
   await writeExports(catalog, outDir, config);

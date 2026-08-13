@@ -41,13 +41,30 @@ function str(name: string, fallback: string): string {
   return v === undefined || v.trim() === "" ? fallback : v;
 }
 
+function bool(name: string, fallback: boolean): boolean {
+  const v = process.env[name];
+  if (v === undefined || v.trim() === "") return fallback;
+  return /^(1|true|yes|ja|on)$/i.test(v.trim());
+}
+
+function list(name: string): string[] {
+  const v = process.env[name];
+  if (!v) return [];
+  return v.split(",").map((s) => s.trim()).filter(Boolean);
+}
+
 export function loadConfig(): AppConfig {
   loadDotEnv();
   const locale = str("SHOP_LOCALE", "nl").toLowerCase() === "en" ? "en" : "nl";
+  const shopName = str("SHOP_NAME", "Modavella");
   return {
-    shopName: str("SHOP_NAME", "Modavella"),
+    shopName,
     locale,
     currency: str("SHOP_CURRENCY", "EUR"),
+    vendorName: str("VENDOR_NAME", shopName),
+    keepSourceVendor: bool("KEEP_SOURCE_VENDOR", false),
+    brandScrub: bool("BRAND_SCRUB", true),
+    sourceBrands: list("SOURCE_BRANDS"),
     scrapeDelayMs: Math.max(0, num("SCRAPE_DELAY_MS", 600)),
     scrapeConcurrency: Math.min(8, Math.max(1, num("SCRAPE_CONCURRENCY", 3))),
     scrapeMaxRetries: Math.min(8, Math.max(0, num("SCRAPE_MAX_RETRIES", 4))),

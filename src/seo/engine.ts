@@ -1,7 +1,8 @@
 import { SlugRegistry } from "./slug.js";
 import { buildSeoTitle, buildMetaDescription } from "./meta.js";
 import { buildEnhancedDescription } from "./description.js";
-import { slugify, dedupeCI } from "../util/text.js";
+import { rebrandCatalog } from "./rebrand.js";
+import { dedupeCI } from "../util/text.js";
 import type { AppConfig, Catalog, NormalizedProduct } from "../types.js";
 
 /* Runs the deterministic SEO engine across the whole catalogue:
@@ -20,6 +21,9 @@ export interface SeoStats {
   uniqueHandles: number;
   uniqueMetaDescriptions: number;
   collectionsTagged: number;
+  vendorName: string;
+  brandAliasesScrubbed: string[];
+  productsRebranded: number;
 }
 
 /**
@@ -50,6 +54,9 @@ function applyFacetTags(product: NormalizedProduct): void {
 }
 
 export function runSeoEngine(catalog: Catalog, config: AppConfig): SeoStats {
+  // Rebrand FIRST so titles/descriptions/vendor are yours before SEO is built.
+  const rebrand = rebrandCatalog(catalog, config);
+
   const slugs = new SlugRegistry();
   const metaSeen = new Set<string>();
 
@@ -99,5 +106,8 @@ export function runSeoEngine(catalog: Catalog, config: AppConfig): SeoStats {
     uniqueHandles: slugs.size,
     uniqueMetaDescriptions: uniqueMeta,
     collectionsTagged,
+    vendorName: rebrand.vendorName,
+    brandAliasesScrubbed: rebrand.brandAliases,
+    productsRebranded: rebrand.productsRebranded,
   };
 }
